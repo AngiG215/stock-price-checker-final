@@ -11,7 +11,6 @@ const apiRoutes = require('./routes/api.js');
 // const fccTestingRoutes = require('./routes/fcctesting.js');
 // const runner = require('./test-runner');
 
-// 1. CONFIGURACIÓN DE SEGURIDAD (HELMET)
 const helmet = require('helmet');
 
 app.use(helmet.contentSecurityPolicy({
@@ -22,7 +21,6 @@ app.use(helmet.contentSecurityPolicy({
   }
 }));
 
-// 2. CONEXIÓN A LA BASE DE DATOS (Mongoose)
 // He usado el link que pusiste en tu mensaje
 const URI = "mongodb+srv://Angela2026:Angela2026@cluster0.xh78cmq.mongodb.net/?appName=Cluster0";
 
