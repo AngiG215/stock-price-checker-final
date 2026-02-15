@@ -1,6 +1,6 @@
 'use strict';
 require('dotenv').config();
-process.env.NODE_ENV = 'test';
+process.env.NODE_ENV = 'production';
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -8,8 +8,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const apiRoutes = require('./routes/api.js');
-const fccTestingRoutes = require('./routes/fcctesting.js');
-const runner = require('./test-runner');
+// const fccTestingRoutes = require('./routes/fcctesting.js');
+// const runner = require('./test-runner');
 
 // 1. CONFIGURACIÓN DE SEGURIDAD (HELMET)
 const helmet = require('helmet');
@@ -42,7 +42,7 @@ app.route('/')
     res.sendFile(process.cwd() + '/views/index.html');
   });
 
-fccTestingRoutes(app);
+// fccTestingRoutes(app);
 apiRoutes(app);    
     
 app.use(function(req, res, next) {
