@@ -1,8 +1,16 @@
 'use strict';
 require('dotenv').config();
-process.env.NODE_ENV = 'production';
+process.env.NODE_ENV = 'test';
+
 const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 const helmet = require('helmet');
+
+const apiRoutes = require('./routes/api.js');
+const fccTestingRoutes = require('./routes/fcctesting.js');
+const runner = require('./test-runner');
+
 const app = express();
 
 app.use(helmet.contentSecurityPolicy({
@@ -14,12 +22,8 @@ app.use(helmet.contentSecurityPolicy({
 }));
   
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const cors = require('cors');
 
-const apiRoutes = require('./routes/api.js');
-// const fccTestingRoutes = require('./routes/fcctesting.js');
-// const runner = require('./test-runner');
+
 
 // He usado el link que pusiste en tu mensaje
 const URI = "mongodb+srv://Angela2026:Angela2026@cluster0.xh78cmq.mongodb.net/?appName=Cluster0";
@@ -40,7 +44,7 @@ app.route('/')
     res.sendFile(process.cwd() + '/views/index.html');
   });
 
-// fccTestingRoutes(app);
+fccTestingRoutes(app);
 apiRoutes(app);    
     
 app.use(function(req, res, next) {
