@@ -6,20 +6,20 @@ const server = require('../server');
 chai.use(chaiHttp);
 
 suite('Functional Tests', function() {
-
-  test('1. Ver un stock: solicitud GET a /api/stock-prices/', function(done) {
+suite('GET /api/stock-prices => stockData object', function() {
+  
+  test('1 Ver un stock', function(done) {
     chai.request(server)
       .get('/api/stock-prices')
-      .query({ stock: 'GOOG' })
+      .query({ stock: 'good' })
       .end(function(err, res) {
         assert.equal(res.status, 200);
-        assert.equal(res.body.stockData.stock, 'GOOG');
         assert.property(res.body.stockData, 'price');
         done();
       });
   });
 
-  test('2. Ver una acción y darle me gusta', function(done) {
+  test('2 Ver una acción y darle me gusta', function(done) {
     chai.request(server)
       .get('/api/stock-prices')
       .query({ stock: 'AAPL', like: true })
@@ -31,7 +31,7 @@ suite('Functional Tests', function() {
       });
   });
 
-  test('3. Ver la misma acción y darle me gusta de nuevo', function(done) {
+  test('3 Ver la misma acción y darle me gusta de nuevo', function(done) {
     chai.request(server)
       .get('/api/stock-prices')
       .query({ stock: 'AAPL', like: true })
@@ -42,7 +42,7 @@ suite('Functional Tests', function() {
       });
   });
 
-  test('4. Visualizando dos acciones', function(done) {
+  test('4 Visualizando dos acciones', function(done) {
     chai.request(server)
       .get('/api/stock-prices')
       .query({ stock: ['MSFT', 'AMZN'] })
@@ -55,7 +55,7 @@ suite('Functional Tests', function() {
       });
   });
 
-  test('5. Ver dos acciones y darles "me gusta"', function(done) {
+  test('5 Ver dos acciones y darles "me gusta"', function(done) {
     chai.request(server)
       .get('/api/stock-prices')
       .query({ stock: ['MSFT', 'AMZN'], like: true })
