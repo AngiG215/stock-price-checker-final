@@ -9,8 +9,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const apiRoutes = require('./routes/api.js');
-const fccTestingRoutes = require('./routes/fcctesting.js');
-const runner = require('./test-runner');
+// const fccTestingRoutes = require('./routes/fcctesting.js');
+// const runner = require('./test-runner');
 
 app.use(helmet.contentSecurityPolicy({
   directives: {
@@ -39,7 +39,7 @@ app.route('/')
     res.sendFile(process.cwd() + '/views/index.html');
   });
 
-fccTestingRoutes(app);
+// fccTestingRoutes(app);
 apiRoutes(app);    
     
 app.use(function(req, res, next) {
