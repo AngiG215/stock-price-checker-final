@@ -10,13 +10,13 @@ const cors = require('cors');
 
 const apiRoutes = require('./routes/api.js');
 // const fccTestingRoutes = require('./routes/fcctesting.js');
-// const runner = require('./test-runner');
+const runner = require('./test-runner');
 
 app.use(helmet.contentSecurityPolicy({
   directives: {
     defaultSrc: ["'self'"],
-    scriptSrc: ["'self'"],
-    styleSrc: ["'self'"],
+    scriptSrc: ["'self'", "trusted-scripts.com"],
+    styleSrc: ["'self'", "trusted-styles.com"],
   }
 }));
 
