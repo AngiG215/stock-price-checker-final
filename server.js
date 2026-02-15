@@ -20,10 +20,10 @@ app.use(helmet.contentSecurityPolicy({
     styleSrc: ["'self'"]
   }
 }));
-  
+  app.use(helmet.xssFilter());
+  app.use(helmet.noSniff());
+
 const mongoose = require('mongoose');
-
-
 
 // He usado el link que pusiste en tu mensaje
 const URI = "mongodb+srv://Angela2026:Angela2026@cluster0.xh78cmq.mongodb.net/?appName=Cluster0";
@@ -44,8 +44,8 @@ app.route('/')
     res.sendFile(process.cwd() + '/views/index.html');
   });
 
-fccTestingRoutes(app);
-apiRoutes(app);    
+apiRoutes(app); 
+fccTestingRoutes(app);   
     
 app.use(function(req, res, next) {
   res.status(404).type('text').send('Not Found');
