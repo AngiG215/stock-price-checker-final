@@ -4,21 +4,22 @@ process.env.NODE_ENV = 'production';
 const express = require('express');
 const helmet = require('helmet');
 const app = express();
+
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'"],
+    scriptSrc: ["'self'"],
+    styleSrc: ["'self'"],
+  }
+}));
+  
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const apiRoutes = require('./routes/api.js');
 // const fccTestingRoutes = require('./routes/fcctesting.js');
-const runner = require('./test-runner');
-
-app.use(helmet.contentSecurityPolicy({
-  directives: {
-    defaultSrc: ["'self'"],
-    scriptSrc: ["'self'", "trusted-scripts.com"],
-    styleSrc: ["'self'", "trusted-styles.com"],
-  }
-}));
+// const runner = require('./test-runner');
 
 // He usado el link que pusiste en tu mensaje
 const URI = "mongodb+srv://Angela2026:Angela2026@cluster0.xh78cmq.mongodb.net/?appName=Cluster0";
